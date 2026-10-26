@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taskflow — Make room for what matters</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<aside class="sidebar">
+  <a href="/" class="brand"><span class="logo">✓</span>taskflow<span class="brand-dot">.</span></a>
+  <div class="workspace"><span class="avatar">Y</span><div>Your workspace<small>Personal space</small></div><span class="workspace-mark">⌄</span></div>
+  <p class="nav-label">WORKSPACE</p>
+  <nav aria-label="Task views">
+    <button data-view="all" class="nav-item active"><span>▦</span> All tasks <b id="allCount">0</b></button>
+    <button data-view="today" class="nav-item"><span>☀</span> Today <b id="todayCount">0</b></button>
+    <button data-view="upcoming" class="nav-item"><span>▤</span> Upcoming</button>
+    <button data-view="completed" class="nav-item"><span>✓</span> Completed</button>
+  </nav>
+  <p class="nav-label">YOUR PROJECTS</p>
+  <nav aria-label="Projects"><button class="nav-item" data-view="Personal"><i class="dot purple"></i>Personal</button><button class="nav-item" data-view="Work"><i class="dot orange"></i>Work</button><button class="nav-item" data-view="Learning"><i class="dot blue"></i>Learning</button></nav>
+  <div class="sidebar-bottom"><div class="tip-icon">✧</div><strong>A little focus goes a long way.</strong><p>One task at a time. You've got this.</p></div>
+  <div class="profile"><span class="avatar">Y</span><div>Your space<small>Let's make progress</small></div><span class="online"></span></div>
+</aside>
+<main>
+  <header class="topbar"><span>Workspace <span class="slash">/</span> <strong id="breadcrumb">All tasks</strong></span><span id="currentDate"></span></header>
+  <div class="content">
+    <div class="page-heading"><div><div class="eyebrow">A CLEAR MIND STARTS HERE</div><h1 id="pageTitle">All tasks<span>.</span></h1><p id="subtitle">Make room for what matters. Let's get things done.</p></div><button class="primary" id="addTask"><span>＋</span> New task</button></div>
+    <section class="stats" aria-label="Task overview"><article><span class="stat-icon lavender">▦</span><div><p>Total tasks</p><strong id="total">0</strong></div><span class="stat-caption">Everything in one place</span></article><article><span class="stat-icon peach">◷</span><div><p>In progress</p><strong id="pending">0</strong></div><span class="stat-caption">A little closer every day</span></article><article><span class="stat-icon mint">✓</span><div><p>Completed</p><strong id="done">0</strong></div><span class="stat-caption" id="progressCaption">Your next win is waiting</span></article></section>
+    <section class="task-panel" aria-label="Tasks">
+      <div class="panel-top"><div class="tabs" role="group" aria-label="Task status"><button class="selected" data-status="all">All tasks <span id="visibleCount">0</span></button><button data-status="active">Active</button><button data-status="completed">Completed</button></div><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search tasks..." aria-label="Search tasks"></label></div>
+      <div class="toolbar"><span id="resultCount">0 tasks</span><div><select id="priorityFilter" aria-label="Filter by priority"><option value="all">All priorities</option><option value="high">High priority</option><option value="medium">Medium priority</option><option value="low">Low priority</option></select><select id="sort" aria-label="Sort tasks"><option value="newest">Newest first</option><option value="due">Due date</option><option value="priority">Priority</option></select></div></div>
+      <div id="taskList" aria-live="polite"></div>
+      <div class="panel-footer"><span><span class="tiny-dot"></span> Saved in your workspace</span><span>Small steps. Real progress.</span></div>
+    </section>
+    <div class="quote"><span>✧</span> “The secret of getting ahead is getting started.” <small>— Mark Twain</small></div>
+  </div>
+</main>
+<dialog id="taskDialog"><form id="taskForm"><div class="dialog-heading"><div><div class="eyebrow">MAKE IT HAPPEN</div><h2 id="dialogTitle">New task</h2></div><button type="button" class="icon-button" id="closeDialog" aria-label="Close dialog">×</button></div><label>Task title<input name="title" required maxlength="200" placeholder="What would you like to get done?"></label><label>Notes <span class="optional">(optional)</span><textarea name="notes" maxlength="2000" rows="3" placeholder="Add a little more detail..."></textarea></label><div class="form-grid"><label>Project<select name="project"><option>Personal</option><option>Work</option><option>Learning</option></select></label><label>Priority<select name="priority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label></div><label>Due date <span class="optional">(optional)</span><input type="date" name="dueDate"></label><p id="formError" role="alert"></p><div class="dialog-footer"><button type="button" class="secondary" id="cancelDialog">Cancel</button><button type="submit" class="primary" id="saveTask">Create task</button></div></form></dialog>
+<dialog id="deleteDialog"><h2>Delete this task?</h2><p>This task will be permanently removed.</p><div class="dialog-footer"><button class="secondary" id="cancelDelete">Keep task</button><button class="danger" id="confirmDelete">Delete task</button></div></dialog>
+<div id="toast" role="status" hidden></div>
+</body></html>
